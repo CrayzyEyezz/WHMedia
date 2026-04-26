@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WHMedia</title>
+  <style>
+    :root {
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a2e;
+      --bg-card: #16213e;
+      --bg-hover: #1f4068;
+      --text-primary: #ffffff;
+      --text-secondary: #a0a0a0;
+      --accent: #e94560;
+      --accent-hover: #ff6b6b;
+      --border: #2a2a4a;
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f5f5f5;
+      --bg-secondary: #ffffff;
+      --bg-card: #ffffff;
+      --bg-hover: #e8e8e8;
+      --text-primary: #1a1a2e;
+      --text-secondary: #666666;
+      --accent: #e94560;
+      --accent-hover: #ff6b6b;
+      --border: #dddddd;
+    }
+
+    [data-theme="synthwave"] {
+      --bg-primary: #1a0a2e;
+      --bg-secondary: #2d1b4e;
+      --bg-card: #3d2b5e;
+      --bg-hover: #4d3b6e;
+      --text-primary: #ff6bd6;
+      --text-secondary: #b8a0d0;
+      --accent: #00ffff;
+      --accent-hover: #6bffff;
+      --border: #5d4b7e;
+    }
+
+    [data-theme="forest"] {
+      --bg-primary: #1a2e1a;
+      --bg-secondary: #2e4a2e;
+      --bg-card: #3e5e3e;
+      --bg-hover: #4e6e4e;
+      --text-primary: #90ee90;
+      --text-secondary: #6b8e6b;
+      --accent: #ffa500;
+      --accent-hover: #ffcc00;
+      --border: #5e7e5e;
+    }
+
+    [data-theme="pink-flowers"] {
+      --bg-primary: #1a0a15;
+      --bg-secondary: #2d1525;
+      --bg-card: #3d2035;
+      --bg-hover: #4d2a45;
+      --text-primary: #ffb6c1;
+      --text-secondary: #d88090;
+      --accent: #ff69b4;
+      --accent-hover: #ff1493;
+      --border: #5a3550;
+    }
+
+    [data-theme="ocean"] {
+      --bg-primary: #0a1628;
+      --bg-secondary: #152238;
+      --bg-card: #1e3050;
+      --bg-hover: #284060;
+      --text-primary: #87ceeb;
+      --text-secondary: #5a9bc0;
+      --accent: #00bfff;
+      --accent-hover: #00ffff;
+      --border: #2a4870;
+    }
+
+    [data-theme="fire"] {
+      --bg-primary: #1a0a05;
+      --bg-secondary: #2d1510;
+      --bg-card: #3d2015;
+      --bg-hover: #4d2a1a;
+      --text-primary: #ffb366;
+      --text-secondary: #cc8855;
+      --accent: #ff4500;
+      --accent-hover: #ff6600;
+      --border: #5a3520;
+    }
+
+    [data-theme="space"] {
+      --bg-primary: #050510;
+      --bg-secondary: #0f0f25;
+      --bg-card: #1a1a35;
+      --bg-hover: #252548;
+      --text-primary: #c0c0ff;
+      --text-secondary: #8080c0;
+      --accent: #9370db;
+      --accent-hover: #ba55d3;
+      --border: #2a2a50;
+    }
+
+    [data-theme="matrix"] {
+      --bg-primary: #001100;
+      --bg-secondary: #002200;
+      --bg-card: #003300;
+      --bg-hover: #004400;
+      --text-primary: #00ff00;
+      --text-secondary: #00aa00;
+      --accent: #00ff00;
+      --accent-hover: #33ff33;
+      --border: #004400;
+    }
+
+    [data-theme="neon"] {
+      --bg-primary: #0a0a15;
+      --bg-secondary: #151525;
+      --bg-card: #202035;
+      --bg-hover: #2a2a45;
+      --text-primary: #ff00ff;
+      --text-secondary: #ff88ff;
+      --accent: #00ffff;
+      --accent-hover: #88ffff;
+      --border: #353555;
+    }
+
+    [data-theme="rainbow"] {
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a1a;
+      --bg-card: #252525;
+      --bg-hover: #333333;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --accent: #ff0000;
+      --accent-hover: #00ff00;
+      --border: #404040;
+    }
+
+    [data-theme="rainbow"] header,
+    [data-theme="rainbow"] .card,
+    [data-theme="rainbow"] .btn,
+    [data-theme="rainbow"] button,
+    [data-theme="rainbow"] .section-title,
+    [data-theme="rainbow"] .logo,
+    [data-theme="rainbow"] input,
+    [data-theme="rainbow"] select,
+    [data-theme="rainbow"] .search-bar,
+    [data-theme="rainbow"] .modal,
+    [data-theme="rainbow"] .account-section,
+    [data-theme="rainbow"] .settings-group,
+    [data-theme="rainbow"] .media-details,
+    [data-theme="rainbow"] .embed-wrapper {
+      animation: rgb-border 2s linear infinite;
+    }
+
+    [data-theme="rainbow"] .logo,
+    [data-theme="rainbow"] .section-title,
+    [data-theme="rainbow"] header {
+      animation: rgb-border 2s linear infinite, rgb-text 2s linear infinite;
+    }
+    @keyframes rgb-text {
+      0% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+      20% { text-shadow: 0 0 10px #ff8800, 0 0 20px #ff8800; }
+      40% { text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00; }
+      60% { text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
+      80% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff; }
+      100% { text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000; }
+    }
+    @keyframes rgb-border {
+      0% { 
+        border-color: #ff0000;
+        box-shadow: 0 0 15px #ff0000, inset 0 0 5px rgba(255,0,0,0.3);
+      }
+      20% { 
+        border-color: #ff8800;
+        box-shadow: 0 0 15px #ff8800, inset 0 0 5px rgba(255,136,0,0.3);
+      }
+      40% { 
+        border-color: #ffff00;
+        box-shadow: 0 0 15px #ffff00, inset 0 0 5px rgba(255,255,0,0.3);
+      }
+      60% { 
+        border-color: #00ff00;
+        box-shadow: 0 0 15px #00ff00, inset 0 0 5px rgba(0,255,0,0.3);
+      }
+      80% { 
+        border-color: #00ffff;
+        box-shadow: 0 0 15px #00ffff, inset 0 0 5px rgba(0,255,255,0.3);
+      }
+      100% { 
+        border-color: #ff0000;
+        box-shadow: 0 0 15px #ff0000, inset 0 0 5px rgba(255,0,0,0.3);
+      }
+    }
+
+    [data-theme="rainbow"] .card:hover,
+    [data-theme="rainbow"] button:hover,
+    [data-theme="rainbow"] .btn:hover {
+      animation: rgb-glow 1s linear infinite;
+    }
+    @keyframes rgb-glow {
+      0% { box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
+      25% { box-shadow: 0 0 20px #ff8800, 0 0 40px #ff8800; }
+      50% { box-shadow: 0 0 20px #ffff00, 0 0 40px #ffff00; }
+      75% { box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00; }
+      100% { box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      transition: background 0.5s, color 0.3s;
+    }
+
+    #bg-effects {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .page {
+      display: none;
+      padding: 20px;
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .page.active { display: block; }
+
+    .flower {
+      position: absolute;
+      font-size: 20px;
+      opacity: 0.7;
+      animation: fall linear infinite;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.7; }
+      90% { opacity: 0.7; }
+      100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: -100%;
+      width: 300%;
+      height: 100px;
+      background: linear-gradient(90deg, transparent, rgba(0,191,255,0.1), transparent);
+      animation: wave 8s linear infinite;
+      pointer-events: none;
+    }
+    .wave:nth-child(2) { animation-delay: -4s; opacity: 0.5; }
+    @keyframes wave {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(33.33%); }
+    }
+
+    .ember {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: #ff4500;
+      box-shadow: 0 0 6px #ff4500;
+      animation: rise linear infinite;
+      pointer-events: none;
+    }
+    @keyframes rise {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(0); opacity: 0; }
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .matrix-char {
+      position: absolute;
+      font-family: monospace;
+      font-size: 14px;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00;
+      animation: matrix-fall linear infinite;
+      pointer-events: none;
+    }
+    @keyframes matrix-fall {
+      0% { transform: translateY(-20px); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    .neon-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255,0,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,0,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      animation: grid-move 20s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes grid-move {
+      0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+      100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+    }
+
+    .neon-glow {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.3;
+      animation: glow-pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .neon-glow.pink { background: #ff00ff; top: 20%; left: 10%; animation-delay: 0s; }
+    .neon-glow.cyan { background: #00ffff; bottom: 20%; right: 10%; animation-delay: 2s; }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.2; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.2); }
+    }
+
+    .rainbow-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, #151515 0%, #0a0a0a 100%);
+      animation: bg-pulse 4s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes bg-pulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+
+    .rainbow-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: particle-float 6s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes particle-float {
+      0%, 100% { transform: translate(0, 0); opacity: 0.3; }
+      25% { transform: translate(30px, -20px); opacity: 0.8; }
+      50% { transform: translate(-20px, 30px); opacity: 0.5; }
+      75% { transform: translate(-30px, -10px); opacity: 0.9; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 30px;
+    }
+
+    .header-right { display: flex; gap: 15px; align-items: center; }
+
+    .logo {
+      font-size: 2.5em;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+      background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .header-actions { display: flex; gap: 15px; align-items: center; }
+
+    .icon-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3em;
+      transition: all 0.2s;
+    }
+    .icon-btn:hover { background: var(--bg-hover); transform: scale(1.05); }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+    .search-bar {
+      display: flex;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      gap: 10px;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 15px 20px;
+      font-size: 1.1em;
+      border: 2px solid var(--border);
+      border-radius: 30px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-bar input:focus { border-color: var(--accent); }
+    .search-bar input::placeholder { color: var(--text-secondary); }
+
+    .search-bar button {
+      padding: 15px 30px;
+      font-size: 1.1em;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-bar button:hover { background: var(--accent-hover); }
+
+    .section-title {
+      font-size: 1.5em;
+      font-weight: 700;
+      margin: 30px 0 20px;
+      color: var(--text-primary);
+    }
+
+    .section-title span { color: var(--accent); }
+
+    .slider-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      padding: 10px 0 20px;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg-secondary);
+    }
+    .slider-container::-webkit-scrollbar { height: 8px; }
+    .slider-container::-webkit-scrollbar-track { background: var(--bg-secondary); border-radius: 4px; }
+    .slider-container::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+    .search-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+      padding: 10px 0;
+    }
+    .search-results-grid .card { flex: none; }
+
+    .card {
+      flex: 0 0 200px;
+      scroll-snap-align: start;
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+    }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3); }
+    .card.focused { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 0 3px var(--accent), 0 10px 30px rgba(233, 69, 96, 0.5); }
+    .card.focused .card-remove { opacity: 1; }
+    .card.nav-focused { transform: translateY(-5px) scale(1.05); box-shadow: 0 0 0 3px var(--accent), 0 10px 30px rgba(233, 69, 96, 0.5); }
+    .card img { width: 100%; height: 280px; object-fit: cover; }
+    .card-info { padding: 12px; }
+    .card-title { font-weight: 600; font-size: 0.95em; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .card-meta { font-size: 0.8em; color: var(--text-secondary); }
+    .card-type {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.8);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75em;
+      text-transform: uppercase;
+    }
+    .card-remove {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(233, 69, 96, 0.9);
+      color: white;
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 1;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .card:hover .card-remove { opacity: 1; }
+    .card-remove:hover { background: #ff4444; }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-primary);
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: background 0.2s;
+    }
+    .back-btn:hover { background: var(--bg-hover); }
+
+    .header-focus {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      box-shadow: 0 0 15px var(--accent);
+      border-radius: 12px;
+    }
+    .category-focused {
+      outline: 2px dashed var(--accent);
+      outline-offset: 5px;
+    }
+
+    #embed-page { padding-top: 10px; }
+    .embed-wrapper {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 12px;
+      margin-bottom: 8px;
+    }
+    .embed-source-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 14px;
+    }
+    .embed-source-bar select {
+      padding: 6px 10px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-secondary);
+      color: var(--text-color);
+      font-size: 14px;
+    }
+    .embed-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .media-details {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 25px;
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 30px;
+    }
+    .media-poster { 
+      width: 150px; 
+      border-radius: 8px; 
+    }
+    .media-title { font-size: 1.5em; font-weight: 700; margin-bottom: 10px; }
+    .media-meta { display: flex; gap: 15px; color: var(--text-secondary); margin-bottom: 15px; font-size: 0.9em; flex-wrap: wrap; }
+    .media-rating { color: #ffd700; }
+    .media-overview { line-height: 1.6; color: var(--text-secondary); }
+    .media-text { display: flex; flex-direction: column; }
+
+    .episodes-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 350px;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .episodes-panel {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 20px;
+      max-height: 500px;
+      overflow-y: auto;
+    }
+    .season-select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .episode-list { display: flex; flex-direction: column; gap: 10px; }
+    .episode-item {
+      display: flex;
+      gap: 12px;
+      padding: 12px;
+      background: var(--bg-secondary);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+      border: 2px solid transparent;
+    }
+    .episode-item:hover { background: var(--bg-hover); }
+    .episode-item.current {
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(var(--accent-rgb, 229, 9, 20), 0.4);
+    }
+    .episode-num {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .episode-details h4 { font-size: 0.95em; margin-bottom: 4px; }
+    .episode-details p { font-size: 0.8em; color: var(--text-secondary); }
+
+    .cast-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .cast-member { text-align: center; }
+    .cast-member img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 8px;
+      border: 2px solid var(--accent);
+    }
+    .cast-member p { font-size: 0.75em; color: var(--text-secondary); }
+
+    .settings-container, .account-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .settings-group, .account-section {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 25px;
+      margin-bottom: 20px;
+    }
+    .settings-group h3, .account-section h3 {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .setting-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .setting-item:last-child { border-bottom: none; }
+    .setting-label h4 { font-size: 1em; margin-bottom: 4px; }
+    .setting-label p { font-size: 0.85em; color: var(--text-secondary); }
+
+    select, input[type="text"], input[type="password"] {
+      padding: 10px 15px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.95em;
+      min-width: 150px;
+    }
+    select:focus, input:focus { outline: none; border-color: var(--accent); }
+
+    .toggle {
+      position: relative;
+      width: 50px;
+      height: 26px;
+      background: var(--bg-secondary);
+      border-radius: 13px;
+      cursor: pointer;
+      transition: background 0.3s;
+      border: 1px solid var(--border);
+    }
+    .toggle.active { background: var(--accent); }
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    .toggle.active::after { transform: translateX(24px); }
+
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border); }
+
+    .avatar-selector {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+    .avatar-option {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 3px solid transparent;
+      transition: border-color 0.2s, transform 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8em;
+      background: var(--bg-secondary);
+    }
+    .avatar-option:hover { transform: scale(1.1); }
+    .avatar-option.selected { border-color: var(--accent); }
+    .avatar-option img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+    .upload-avatar { margin-top: 20px; }
+    .upload-avatar label { cursor: pointer; display: inline-block; }
+    .upload-avatar label:hover { background: var(--bg-hover); }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; margin-bottom: 8px; font-weight: 600; }
+    .form-group input { width: 100%; }
+
+    .recent-section { margin-bottom: 30px; }
+    .recent-section .card { flex: 0 0 180px; }
+    .recent-section .card img { height: 250px; }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .modal-overlay.active { display: flex; }
+
+    .modal {
+      background: var(--bg-card);
+      border-radius: 16px;
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+    }
+    .modal h2 { margin-bottom: 20px; }
+    .modal .form-group { margin-bottom: 15px; }
+    .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; }
+
+    @media (max-width: 900px) {
+      .episodes-wrapper { grid-template-columns: 1fr; }
+      .media-details { grid-template-columns: 120px 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 1.8em; }
+      .card { flex: 0 0 150px; }
+      .card img { height: 210px; }
+      .media-details { grid-template-columns: 100px 1fr; gap: 15px; padding: 15px; }
+      .media-poster { width: 100px; }
+      .media-title { font-size: 1.2em; }
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-secondary);
+    }
+    .empty-state span { font-size: 3em; display: block; margin-bottom: 15px; opacity: 0.5; }
+  </style>
+</head>
+<body data-theme="dark">
+  <div id="bg-effects"></div>
+
+  <div id="home-page" class="page active">
+    <header>
+      <div class="logo">WHMedia</div>
+      <div class="header-right">
+        <div class="user-avatar" onclick="showPage('account-page')" id="user-avatar" title="Account">&#128100;</div>
+        <div id="settings-btn-wrapper"><button class="icon-btn" onclick="showPage('settings-page')" title="Settings">&#9881;</button></div>
+      </div>
+    </header>
+
+    <div id="search-bar-wrapper" class="search-bar">
+      <input type="text" id="search-input" placeholder="Search movies & shows..." onkeypress="if(event.key==='Enter') doSearch()" />
+      <button onclick="doSearch()">Search</button>
+    </div>
+
+    <div id="recently-watched-section" class="recent-section" style="display:none;">
+      <h2 class="section-title">&#9201; Recently <span>Watched</span></h2>
+      <div class="slider-container" id="recently-watched"></div>
+    </div>
+
+    <div id="home-sections">
+      <h2 class="section-title">&#9733; Top <span>Recommended</span></h2>
+      <div class="slider-container" id="recommended-section"></div>
+
+      <h2 class="section-title">&#127916; Top <span>Movies</span></h2>
+      <div class="slider-container" id="movies-section"></div>
+
+      <h2 class="section-title">&#127910; Top <span>TV Shows</span></h2>
+      <div class="slider-container" id="shows-section"></div>
+
+      <h2 class="section-title">&#129315; <span>Comedy</span></h2>
+      <div class="slider-container" id="comedy-section"></div>
+    </div>
+  </div>
+
+  <div id="search-page" class="page">
+    <header>
+      <div style="display:flex;align-items:center;gap:15px;">
+        <button class="back-btn" onclick="showPage('home-page')" style="margin:0;">&#8592; Home</button>
+        <div class="logo">Search</div>
+      </div>
+      <div class="header-right">
+        <div class="user-avatar" onclick="showPage('account-page')" id="user-avatar-search" title="Account">&#128100;</div>
+        <div id="settings-btn-wrapper-search"><button class="icon-btn" onclick="showPage('settings-page')" title="Settings">&#9881;</button></div>
+      </div>
+    </header>
+
+    <div id="search-bar-wrapper-page" class="search-bar">
+      <input type="text" id="search-input-page" placeholder="Search movies & shows..." onkeypress="if(event.key==='Enter') doSearchFromPage()" />
+      <button onclick="doSearchFromPage()">Search</button>
+    </div>
+
+    <h2 class="section-title">&#128269; Search <span>Results</span></h2>
+    <p id="search-query-display" style="color:var(--text-secondary);margin-bottom:20px;"></p>
+    <div id="search-results-section"><div class="search-results-grid" id="search-results"></div></div>
+  </div>
+
+  <div id="embed-page" class="page">
+    <button class="back-btn" onclick="showPage('home-page')">&#8592; Back</button>
+    <div class="embed-wrapper" id="embed-wrapper"><iframe id="video-embed" allowfullscreen></iframe></div>
+    <div class="embed-source-bar">
+      <span>Source:</span>
+      <select id="embed-source-select" onchange="changeEmbedSource(this.value)"></select>
+    </div>
+    
+    <div class="episodes-wrapper">
+      <div class="media-details" id="media-details"></div>
+      <div class="episodes-panel" id="episodes-panel" style="display:none;">
+        <select class="season-select" id="season-select" onchange="loadEpisodes()"></select>
+        <div class="episode-list" id="episode-list"></div>
+      </div>
+    </div>
+    
+    <h3 class="section-title">&#11088; <span>Cast</span></h3>
+    <div class="cast-list" id="cast-list"></div>
+  </div>
+
+  <div id="settings-page" class="page">
+    <button class="back-btn" onclick="showPage('home-page')">&#8592; Back</button>
+    <div class="settings-container">
+      <h1 class="section-title">&#9881; <span>Settings</span></h1>
+
+      <div class="settings-group">
+        <h3>Appearance</h3>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Theme</h4>
+            <p>Choose your preferred color scheme</p>
+          </div>
+          <select id="theme-select" onchange="changeTheme(this.value)">
+            <option value="dark">Dark</option>
+            <option value="light">Light</option>
+            <option value="synthwave">Synthwave</option>
+            <option value="forest">Forest</option>
+            <option value="pink-flowers">Pink Flowers</option>
+            <option value="ocean">Ocean</option>
+            <option value="fire">Fire</option>
+            <option value="space">Space</option>
+            <option value="matrix">Matrix</option>
+            <option value="neon">Neon</option>
+            <option value="rainbow">Rainbow</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="settings-group">
+        <h3>Home Page Categories</h3>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Recently Watched</h4>
+            <p>Show recently watched section</p>
+          </div>
+          <div class="toggle" id="toggle-recently" onclick="toggleSetting('showRecentlyWatched')"></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Top Recommended</h4>
+            <p>Show recommended section</p>
+          </div>
+          <div class="toggle" id="toggle-recommended" onclick="toggleSetting('showRecommended')"></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Top Movies</h4>
+            <p>Show movies section</p>
+          </div>
+          <div class="toggle" id="toggle-movies" onclick="toggleSetting('showMovies')"></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Top TV Shows</h4>
+            <p>Show TV shows section</p>
+          </div>
+          <div class="toggle" id="toggle-shows" onclick="toggleSetting('showShows')"></div>
+        </div>
+        <div class="setting-item">
+          <div class="setting-label">
+            <h4>Comedy</h4>
+            <p>Show comedy section</p>
+          </div>
+          <div class="toggle" id="toggle-comedy" onclick="toggleSetting('showComedy')"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="account-page" class="page">
+    <button class="back-btn" onclick="showPage('home-page')">&#8592; Back</button>
+    <div class="account-container">
+      <h1 class="section-title">&#128100; <span>Account</span></h1>
+
+      <div class="account-section" id="login-section">
+        <h3>Sign Up / Login</h3>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="username-input" placeholder="Enter username" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="password-input" placeholder="Enter password" />
+        </div>
+        <button class="btn btn-primary" onclick="saveAccount()">Save Account</button>
+      </div>
+
+      <div class="account-section" id="profile-section" style="display:none;">
+        <h3>Profile</h3>
+        <p style="margin-bottom:15px;">Logged in as: <strong id="profile-username"></strong></p>
+        <button class="btn btn-secondary" onclick="logout()">Log Out</button>
+      </div>
+
+      <div class="account-section">
+        <h3>Choose Avatar</h3>
+        <div class="avatar-selector" id="avatar-selector"></div>
+        <div class="upload-avatar">
+          <label for="avatar-upload" class="btn btn-secondary">Upload Image (max 5MB)</label>
+          <input type="file" id="avatar-upload" accept="image/*" style="display:none;" onchange="handleAvatarUpload(this)" />
+        </div>
+        <div id="custom-avatar-preview" style="margin-top:15px; display:none;">
+          <p style="margin-bottom:10px;">Custom Avatar:</p>
+          <div style="width:60px;height:60px;border-radius:50%;overflow:hidden;border:2px solid var(--accent);">
+            <img id="custom-avatar-img" style="width:100%;height:100%;object-fit:cover;" />
+          </div>
+          <button class="btn btn-secondary" style="margin-top:10px;" onclick="removeCustomAvatar()">Remove</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = window.location.origin;
+    const TMDB_PROXY = `${API_BASE}/api/tmdb`;
+    const IMG_BASE = 'https://image.tmdb.org/t/p/w500';
+
+    const VIDEO_SOURCES = [
+      { id: 'vidsrc-ru', name: 'VidSRC (vidsrc-embed.ru)', movie: 'https://vidsrc-embed.ru/embed/movie/', tv: 'https://vidsrc-embed.ru/embed/tv/' },
+      { id: 'vidsrc-me', name: 'VidSRC (vidsrc.me)', movie: 'https://vidsrc.me/embed/movie/', tv: 'https://vidsrc.me/embed/tv/' },
+      { id: 'xprime', name: 'XPrime', movie: 'https://xprime.su/watch/', tv: 'https://xprime.su/watch/' }
+    ];
+
+    function getVideoSource(type) {
+      const source = VIDEO_SOURCES.find(s => s.id === settings.videoSource) || VIDEO_SOURCES[0];
+      return type === 'movie' ? source.movie : source.tv;
+    }
+
+    function populateSourceSelector() {
+      const select = document.getElementById('embed-source-select');
+      if (!select) return;
+      select.innerHTML = VIDEO_SOURCES.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+    }
+
+    const EMOJIS = ['&#128100;','&#128101;','&#128102;','&#128103;','&#128104;','&#128105;','&#128106;','&#128107;','&#128108;','&#128109;','&#128116;','&#128117;','&#128118;','&#128119;','&#128120;','&#128121;'];
+
+    let currentMedia = null;
+    let currentMediaType = null;
+    let pendingSearchQuery = '';
+    let currentPlayPosition = 0;
+
+    const defaultSettings = {
+      theme: 'dark',
+      showRecentlyWatched: true,
+      showRecommended: true,
+      showMovies: true,
+      showShows: true,
+      showComedy: true,
+      avatar: EMOJIS[0],
+      videoSource: 'vidsrc-ru'
+    };
+
+    let settings = { ...defaultSettings };
+    let account = null;
+    let recentlyWatched = [];
+    let deviceCode = localStorage.getItem('whmedia_device');
+
+    async function loadSettings() {
+      const saved = localStorage.getItem('whmedia_settings');
+      if (saved) settings = { ...defaultSettings, ...JSON.parse(saved) };
+      
+      // Try to auto-login with device code
+      if (deviceCode) {
+        try {
+          const res = await fetch(`${API_BASE}/api/authorize`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ deviceCode })
+          });
+          const data = await res.json();
+          if (data.success) {
+            account = data.user;
+            recentlyWatched = data.user.recentlyWatched || [];
+            settings = { ...defaultSettings, ...data.user.settings };
+            updateToggleUI();
+            updateAccountUI();
+            renderRecentlyWatched();
+            return;
+          } else {
+            localStorage.removeItem('whmedia_device');
+            deviceCode = null;
+          }
+        } catch (err) {
+          console.log('Backend offline');
+        }
+      }
+    }
+
+    function saveSettings() {
+      localStorage.setItem('whmedia_settings', JSON.stringify(settings));
+      if (account) {
+        fetch(`${API_BASE}/api/user/${account.username}/settings`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ settings })
+        }).catch(err => console.log('Failed to sync settings'));
+      }
+    }
+
+    async function saveAccount() {
+      const username = document.getElementById('username-input').value.trim();
+      const password = document.getElementById('password-input').value.trim();
+      if (!username || !password) return alert('Please fill in both fields');
+      
+      try {
+        // Try to register first
+        let res = await fetch(`${API_BASE}/api/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password, deviceCode })
+        });
+        let data = await res.json();
+        
+        // If user exists, try to login
+        if (!data.success && data.error === 'Username already exists') {
+          res = await fetch(`${API_BASE}/api/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password, deviceCode })
+          });
+          data = await res.json();
+        }
+        
+        if (data.success) {
+          account = data.user;
+          recentlyWatched = data.user.recentlyWatched || [];
+          settings = { ...defaultSettings, ...data.user.settings };
+          deviceCode = data.deviceCode;
+          localStorage.setItem('whmedia_device', data.deviceCode);
+          localStorage.setItem('whmedia_settings', JSON.stringify(settings));
+          updateToggleUI();
+          updateAccountUI();
+          renderRecentlyWatched();
+          document.getElementById('username-input').value = '';
+          document.getElementById('password-input').value = '';
+        } else {
+          alert(data.error || 'Failed to create account');
+        }
+      } catch (err) {
+        alert('Server offline. Please start the backend server.');
+      }
+    }
+
+    function logout() {
+      account = null;
+      recentlyWatched = [];
+      deviceCode = null;
+      localStorage.removeItem('whmedia_device');
+      updateAccountUI();
+      renderRecentlyWatched();
+    }
+
+    function updateAccountUI() {
+      const avatar = document.getElementById('user-avatar');
+      const avatarSearch = document.getElementById('user-avatar-search');
+      const profileSection = document.getElementById('profile-section');
+      const loginSection = document.getElementById('login-section');
+      const avatarValue = account ? (account.settings?.avatar || settings.avatar) : settings.avatar;
+      
+      // Check if it's a custom image (base64 or file path) or emoji
+      let avatarHtml;
+      if (avatarValue && (avatarValue.startsWith('data:image') || avatarValue.startsWith('/pfps/'))) {
+        avatarHtml = `<img src="${avatarValue}" />`;
+      } else if (avatarValue && avatarValue.startsWith('&#')) {
+        avatarHtml = avatarValue;
+      } else {
+        avatarHtml = '&#128100;'; // Default
+      }
+      
+      if (avatar) avatar.innerHTML = avatarHtml;
+      if (avatarSearch) avatarSearch.innerHTML = avatarHtml;
+      
+      if (account) {
+        profileSection.style.display = 'block';
+        loginSection.style.display = 'none';
+        document.getElementById('profile-username').textContent = account.username;
+      } else {
+        profileSection.style.display = 'none';
+        loginSection.style.display = 'block';
+      }
+    }
+
+    function initAvatarSelector() {
+      const container = document.getElementById('avatar-selector');
+      container.innerHTML = '';
+      const currentAvatar = account ? (account.settings?.avatar || settings.avatar) : settings.avatar;
+      
+      EMOJIS.forEach(emoji => {
+        const div = document.createElement('div');
+        div.className = 'avatar-option' + (currentAvatar === emoji ? ' selected' : '');
+        div.innerHTML = emoji;
+        div.onclick = () => {
+          document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+          div.classList.add('selected');
+          settings.avatar = emoji;
+          if (account) {
+            account.settings.avatar = emoji;
+            saveSettings();
+          }
+          updateAccountUI();
+          updateCustomAvatarPreview();
+        };
+        container.appendChild(div);
+      });
+      
+      // Show custom avatar preview if using one
+      updateCustomAvatarPreview();
+    }
+    
+    function updateCustomAvatarPreview() {
+      const preview = document.getElementById('custom-avatar-preview');
+      const img = document.getElementById('custom-avatar-img');
+      const currentAvatar = account ? (account.settings?.avatar || settings.avatar) : settings.avatar;
+      
+      // Check if current avatar is a custom image (base64 or file path)
+      if (currentAvatar && (currentAvatar.startsWith('data:image') || currentAvatar.startsWith('/pfps/'))) {
+        img.src = currentAvatar;
+        preview.style.display = 'block';
+      } else {
+        preview.style.display = 'none';
+      }
+    }
+
+    function handleAvatarUpload(input) {
+      const file = input.files[0];
+      if (!file) return;
+      
+      // Check file size (5MB max)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image too large! Maximum size is 5MB.');
+        input.value = '';
+        return;
+      }
+      
+      // Check file type
+      if (!file.type.startsWith('image/')) {
+        alert('Please select an image file.');
+        input.value = '';
+        return;
+      }
+      
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        const base64 = e.target.result;
+        
+        // Update settings locally
+        settings.avatar = base64;
+        
+        // Upload to server if logged in
+        if (account) {
+          try {
+            const res = await fetch(`${API_BASE}/api/user/${account.username}/avatar`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ avatar: base64 })
+            });
+            const data = await res.json();
+            if (data.success) {
+              settings.avatar = data.avatar;
+              account.settings.avatar = data.avatar;
+            }
+          } catch (err) {
+            console.log('Failed to upload avatar');
+          }
+        }
+        
+        // Update UI
+        document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+        updateAccountUI();
+        updateCustomAvatarPreview();
+        
+        // Clear input
+        input.value = '';
+      };
+      reader.readAsDataURL(file);
+    }
+    
+    function removeCustomAvatar() {
+      // Reset to default emoji avatar
+      settings.avatar = EMOJIS[0];
+      
+      if (account) {
+        account.settings.avatar = EMOJIS[0];
+        saveSettings();
+      }
+      
+      // Update UI
+      document.querySelectorAll('.avatar-option').forEach(el => el.classList.remove('selected'));
+      if (document.querySelector('.avatar-option')) {
+        document.querySelector('.avatar-option').classList.add('selected');
+      }
+      updateAccountUI();
+      updateCustomAvatarPreview();
+    }
+
+    function changeTheme(theme) {
+      settings.theme = theme;
+      document.body.setAttribute('data-theme', theme);
+      applyBgEffects(theme);
+      saveSettings();
+    }
+
+    function changeVideoSource(sourceId) {
+      settings.videoSource = sourceId;
+      saveSettings();
+    }
+
+    function changeEmbedSource(sourceId) {
+      settings.videoSource = sourceId;
+      saveSettings();
+      const wrapper = document.getElementById('embed-wrapper');
+      const embed = document.getElementById('video-embed');
+      if (currentMedia && currentMediaType) {
+        let url = currentMediaType === 'movie' 
+          ? `${getVideoSource('movie')}${currentMedia.id}`
+          : `${getVideoSource('tv')}${currentMedia.id}/${currentMedia.lastSeason || 1}/${currentMedia.lastEpisode || 1}`;
+        embed.remove();
+        const newEmbed = document.createElement('iframe');
+        newEmbed.id = 'video-embed';
+        newEmbed.setAttribute('allowfullscreen', '');
+        newEmbed.src = url;
+        wrapper.appendChild(newEmbed);
+      }
+    }
+
+    const FLOWERS = ['\u2740', '\u2738', '\u2737', '\u2661', '\u2739', '\u273A', '\u2665'];
+    const MATRIX_CHARS = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
+
+    function applyBgEffects(theme) {
+      const container = document.getElementById('bg-effects');
+      container.innerHTML = '';
+
+      switch(theme) {
+        case 'pink-flowers':
+          for (let i = 0; i < 30; i++) {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.textContent = FLOWERS[Math.floor(Math.random() * FLOWERS.length)];
+            flower.style.left = Math.random() * 100 + '%';
+            flower.style.animationDuration = (5 + Math.random() * 10) + 's';
+            flower.style.animationDelay = Math.random() * 5 + 's';
+            flower.style.fontSize = (15 + Math.random() * 20) + 'px';
+            flower.style.color = ['#ff69b4', '#ffb6c1', '#ff1493', '#ff85a2', '#ff66b2'][Math.floor(Math.random() * 5)];
+            container.appendChild(flower);
+          }
+          break;
+
+        case 'ocean':
+          for (let i = 0; i < 3; i++) {
+            const wave = document.createElement('div');
+            wave.className = 'wave';
+            wave.style.bottom = (i * 30) + 'px';
+            wave.style.animationDuration = (6 + i * 2) + 's';
+            container.appendChild(wave);
+          }
+          break;
+
+        case 'fire':
+          for (let i = 0; i < 40; i++) {
+            const ember = document.createElement('div');
+            ember.className = 'ember';
+            ember.style.left = Math.random() * 100 + '%';
+            ember.style.bottom = '0';
+            ember.style.animationDuration = (3 + Math.random() * 4) + 's';
+            ember.style.animationDelay = Math.random() * 3 + 's';
+            ember.style.background = ['#ff4500', '#ff6600', '#ff8c00', '#ffa500'][Math.floor(Math.random() * 4)];
+            container.appendChild(ember);
+          }
+          break;
+
+        case 'space':
+          for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
+            container.appendChild(star);
+          }
+          break;
+
+        case 'matrix':
+          for (let i = 0; i < 50; i++) {
+            const char = document.createElement('div');
+            char.className = 'matrix-char';
+            char.textContent = MATRIX_CHARS[Math.floor(Math.random() * MATRIX_CHARS.length)];
+            char.style.left = Math.random() * 100 + '%';
+            char.style.animationDuration = (3 + Math.random() * 5) + 's';
+            char.style.animationDelay = Math.random() * 5 + 's';
+            char.style.opacity = 0.3 + Math.random() * 0.7;
+            container.appendChild(char);
+          }
+          break;
+
+        case 'neon':
+          const grid = document.createElement('div');
+          grid.className = 'neon-grid';
+          container.appendChild(grid);
+          const glow1 = document.createElement('div');
+          glow1.className = 'neon-glow pink';
+          container.appendChild(glow1);
+          const glow2 = document.createElement('div');
+          glow2.className = 'neon-glow cyan';
+          container.appendChild(glow2);
+          break;
+
+        case 'rainbow':
+          const rainbowBg = document.createElement('div');
+          rainbowBg.className = 'rainbow-bg';
+          container.appendChild(rainbowBg);
+          for (let i = 0; i < 30; i++) {
+            const orb = document.createElement('div');
+            orb.className = 'rainbow-particle';
+            orb.style.left = Math.random() * 100 + '%';
+            orb.style.top = Math.random() * 100 + '%';
+            orb.style.animationDelay = Math.random() * 5 + 's';
+            orb.style.animationDuration = (4 + Math.random() * 3) + 's';
+            const colors = ['#ff0000', '#ff8800', '#ffff00', '#00ff00', '#00ffff', '#0088ff', '#8800ff', '#ff00ff'];
+            orb.style.background = colors[Math.floor(Math.random() * colors.length)];
+            orb.style.boxShadow = `0 0 10px ${colors[Math.floor(Math.random() * colors.length)]}`;
+            container.appendChild(orb);
+          }
+          break;
+      }
+    }
+
+    function toggleSetting(key) {
+      settings[key] = !settings[key];
+      const toggle = document.getElementById('toggle-' + key.replace('show', '').toLowerCase());
+      if (toggle) toggle.classList.toggle('active', settings[key]);
+      updateHomeVisibility();
+      saveSettings();
+    }
+
+    function updateHomeVisibility() {
+      document.getElementById('recently-watched-section').style.display = 
+        settings.showRecentlyWatched && recentlyWatched.length > 0 ? 'block' : 'none';
+      document.getElementById('home-sections').querySelectorAll('h2').forEach((h, i) => {
+        const sections = ['recommended-section', 'movies-section', 'shows-section', 'comedy-section'];
+        const keys = ['showRecommended', 'showMovies', 'showShows', 'showComedy'];
+        const idx = Math.floor(i / 2);
+        if (idx < sections.length) {
+          h.closest('div').querySelector('.slider-container').style.display = settings[keys[idx]] ? '' : 'none';
+        }
+      });
+    }
+
+    function updateToggleUI() {
+      document.getElementById('theme-select').value = settings.theme;
+      document.body.setAttribute('data-theme', settings.theme);
+      applyBgEffects(settings.theme);
+      document.getElementById('toggle-recently').classList.toggle('active', settings.showRecentlyWatched);
+      document.getElementById('toggle-recommended').classList.toggle('active', settings.showRecommended);
+      document.getElementById('toggle-movies').classList.toggle('active', settings.showMovies);
+      document.getElementById('toggle-shows').classList.toggle('active', settings.showShows);
+      document.getElementById('toggle-comedy').classList.toggle('active', settings.showComedy);
+    }
+
+    function showPage(pageId) {
+      // Save playback position when leaving embed page
+      if (pageId !== 'embed-page' && currentMediaType === 'tv' && currentMedia) {
+        trySavePosition();
+      }
+      
+      if (pageId !== 'embed-page') {
+        const embed = document.getElementById('video-embed');
+        if (embed) embed.remove();
+      }
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function trySavePosition() {
+      const embed = document.getElementById('video-embed');
+      
+      // Try postMessage approach (works with some players)
+      try {
+        embed.contentWindow.postMessage({ type: 'getCurrentTime' }, '*');
+      } catch (e) {}
+      
+      // Also save current position from our tracking variable
+      if (currentPlayPosition > 0) {
+        addToRecentlyWatched({ 
+          id: currentMedia.id, 
+          type: 'tv', 
+          title: currentMedia.name, 
+          poster: currentMedia.poster_path,
+          season: currentMedia.lastSeason || 1,
+          episode: currentMedia.lastEpisode || 1,
+          position: currentPlayPosition
+        });
+      }
+    }
+
+    // Listen for postMessage responses from video player
+    window.addEventListener('message', (e) => {
+      if (e.data && e.data.type === 'currentTime' && e.data.time) {
+        currentPlayPosition = e.data.time;
+      }
+    });
+
+
+    function showModal() { document.getElementById('search-modal').classList.add('active'); }
+    function closeModal() { document.getElementById('search-modal').classList.remove('active'); }
+
+    function doSearch() {
+      const query = document.getElementById('search-input').value.trim();
+      if (!query) return;
+      document.getElementById('search-input-page').value = query;
+      pendingSearchQuery = query;
+      showPage('search-page');
+      performSearch();
+    }
+
+    function doSearchFromPage() {
+      const query = document.getElementById('search-input-page').value.trim();
+      if (!query) return;
+      pendingSearchQuery = query;
+      performSearch();
+    }
+
+    async function performSearch() {
+      const container = document.getElementById('search-results');
+      const queryDisplay = document.getElementById('search-query-display');
+      const query = pendingSearchQuery.toLowerCase();
+      
+      queryDisplay.textContent = `Showing results for "${pendingSearchQuery}"`;
+      container.innerHTML = '<p style="padding:40px;color:var(--text-secondary);text-align:center;">Loading...</p>';
+
+      try {
+        const [movieRes, tvRes] = await Promise.all([
+          fetch(`${TMDB_PROXY}/search/movie?query=${encodeURIComponent(pendingSearchQuery)}&include_adult=false`),
+          fetch(`${TMDB_PROXY}/search/tv?query=${encodeURIComponent(pendingSearchQuery)}&include_adult=false`)
+        ]);
+        
+        const movieData = await movieRes.json();
+        const tvData = await tvRes.json();
+        
+        container.innerHTML = '';
+        
+        const allResults = [...movieData.results, ...tvData.results];
+        
+        if (allResults.length === 0) {
+          container.innerHTML = '<p style="padding:40px;color:var(--text-secondary);text-align:center;">No results found</p>';
+          return;
+        }
+
+        let results = allResults
+          .filter(item => item.poster_path && (item.vote_count > 5 || item.popularity > 5))
+          .map(item => ({
+            ...item,
+            type: item.title ? 'movie' : 'tv',
+            title: item.title || item.name,
+            relevance: (item.title || item.name).toLowerCase() === query ? 100 : 
+                       (item.title || item.name).toLowerCase().startsWith(query) ? 80 :
+                       (item.title || item.name).toLowerCase().includes(query) ? 50 : 0
+          }))
+          .sort((a, b) => {
+            if (b.relevance !== a.relevance) return b.relevance - a.relevance;
+            if ((b.vote_average || 0) !== (a.vote_average || 0)) return (b.vote_average || 0) - (a.vote_average || 0);
+            return b.popularity - a.popularity;
+          })
+          .slice(0, 40);
+
+        if (results.length === 0) {
+          results = allResults.filter(item => item.poster_path).slice(0, 20).map(item => ({
+            ...item,
+            type: item.title ? 'movie' : 'tv',
+            title: item.title || item.name
+          }));
+        }
+
+        results.forEach(item => {
+          container.appendChild(createCard(item, item.type));
+        });
+      } catch (err) {
+        container.innerHTML = '<p style="padding:40px;color:red;text-align:center;">Error loading results</p>';
+      }
+    }
+
+    function createCard(item, type) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        ${type === 'tv' ? '<span class="card-type">TV</span>' : ''}
+        <img src="${IMG_BASE}${item.poster_path}" alt="${item.title || item.name}" />
+        <div class="card-info">
+          <div class="card-title">${item.title || item.name}</div>
+          <div class="card-meta">${(item.release_date || item.first_air_date || '').slice(0, 4)}</div>
+        </div>
+      `;
+      card.onclick = () => openMedia(item.id, type, item);
+      return card;
+    }
+
+    async function openMedia(id, type, item) {
+      currentMediaType = type;
+      showPage('embed-page');
+      
+      const wrapper = document.getElementById('embed-wrapper');
+      const embedUrl = `${getVideoSource(type)}${id}`;
+      
+      document.getElementById('embed-source-select').value = settings.videoSource || 'vidsrc-ru';
+      
+      const existingEmbed = document.getElementById('video-embed');
+      if (existingEmbed) existingEmbed.remove();
+      
+      let lastXprimeUrl = embedUrl;
+      
+      const newEmbed = document.createElement('iframe');
+      newEmbed.id = 'video-embed';
+      newEmbed.setAttribute('allowfullscreen', '');
+      newEmbed.src = embedUrl;
+      wrapper.appendChild(newEmbed);
+
+      if (type === 'tv') {
+        const updateDebug = (text) => {
+          const debug = document.getElementById('debug-episode');
+          if (debug) {
+            debug.textContent = text || `S${currentMedia.lastSeason || 1} E${currentMedia.lastEpisode || 1}`;
+          }
+        };
+        const showUrl = (url) => {
+          const debugUrl = document.getElementById('debug-url');
+          if (debugUrl) {
+            debugUrl.style.display = 'block';
+            debugUrl.textContent = url;
+          }
+        };
+        updateDebug();
+        showUrl(embedUrl);
+        
+        const checkXprimeInterval = setInterval(() => {
+          if (settings.videoSource !== 'xprime') {
+            clearInterval(checkXprimeInterval);
+            return;
+          }
+          const iframe = document.getElementById('video-embed');
+          if (!iframe) {
+            updateDebug('no iframe');
+            return;
+          }
+          try {
+            const doc = iframe.contentDocument;
+            if (!doc) {
+              updateDebug('no doc access');
+              return;
+            }
+            const playerTitle = doc.querySelector('.player-title .episode-number');
+            if (playerTitle && playerTitle.textContent) {
+              const epMatch = playerTitle.textContent.match(/S(\d+)E(\d+)/i);
+              if (epMatch) {
+                const newSeason = parseInt(epMatch[1]);
+                const newEpisode = parseInt(epMatch[2]);
+                if (newSeason !== currentMedia.lastSeason || newEpisode !== currentMedia.lastEpisode) {
+                  currentMedia.lastSeason = newSeason;
+                  currentMedia.lastEpisode = newEpisode;
+                  updateDebug();
+                  document.getElementById('season-select').value = newSeason;
+                  loadEpisodes(newSeason, newEpisode, newSeason);
+                  setTimeout(() => {
+                    const epItem = document.querySelector(`.episode-item[onclick="playEpisode(${newSeason}, ${newEpisode})"]`);
+                    if (epItem) epItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  }, 300);
+                }
+              } else {
+                updateDebug('parse fail: ' + playerTitle.textContent.substring(0, 20));
+              }
+            } else {
+              updateDebug('no div - checking html...');
+            }
+          } catch (e) {
+            updateDebug('cors: ' + e.message.substring(0, 30));
+          }
+        }, 500);
+      }
+
+      try {
+        const [detailsRes, creditsRes] = await Promise.all([
+          fetch(`${TMDB_PROXY}/${type}/${id}`),
+          fetch(`${TMDB_PROXY}/${type}/${id}/credits`)
+        ]);
+        const details = await detailsRes.json();
+        const credits = await creditsRes.json();
+
+        currentMedia = details;
+
+        const info = document.getElementById('media-details');
+        info.innerHTML = `
+          <img class="media-poster" src="${IMG_BASE}${details.poster_path}" alt="${details.title || details.name}" />
+          <div class="media-text">
+            <div class="media-title">${details.title || details.name}</div>
+            <div class="media-meta">
+              ${details.release_date ? `<span>${details.release_date.slice(0,4)}</span>` : ''}
+              ${details.first_air_date ? `<span>${details.first_air_date.slice(0,4)}</span>` : ''}
+              ${details.runtime ? `<span>${details.runtime} min</span>` : ''}
+              ${details.number_of_seasons ? `<span>${details.number_of_seasons} Seasons</span>` : ''}
+              <span class="media-rating">&#9733; ${details.vote_average?.toFixed(1) || 'N/A'}</span>
+            </div>
+            <p class="media-overview">${details.overview || 'No description available.'}</p>
+          </div>
+        `;
+
+        const castList = document.getElementById('cast-list');
+        castList.innerHTML = credits.cast.slice(0, 12).map(c => `
+          <div class="cast-member">
+            ${c.profile_path ? `<img src="${IMG_BASE}${c.profile_path}" />` : '<div style="width:70px;height:70px;border-radius:50%;background:var(--bg-secondary);display:flex;align-items:center;justify-content:center;">&#128100;</div>'}
+            <p>${c.name}</p>
+          </div>
+        `).join('');
+
+        if (type === 'tv') {
+          const episodesPanel = document.getElementById('episodes-panel');
+          const seasonSelect = document.getElementById('season-select');
+          seasonSelect.innerHTML = details.seasons
+            .filter(s => s.season_number > 0)
+            .map(s => `<option value="${s.season_number}">Season ${s.season_number}</option>`).join('');
+          episodesPanel.style.display = 'block';
+          
+          // Check for saved position
+          const savedItem = recentlyWatched.find(r => r.id === id && r.type === 'tv');
+          const savedSeason = savedItem?.season || 1;
+          const savedEpisode = savedItem?.episode || 1;
+          const savedPosition = savedItem?.position || 0;
+          
+          // Select the saved season
+          seasonSelect.value = savedSeason;
+          loadEpisodes(savedSeason, savedEpisode, savedSeason);
+          
+          // Auto-play from saved position
+          setTimeout(() => {
+            playEpisode(savedSeason, savedEpisode, savedPosition);
+          }, 500);
+        } else {
+          document.getElementById('episodes-panel').style.display = 'none';
+        }
+
+        addToRecentlyWatched({ id, type, title: details.title || details.name, poster: details.poster_path });
+
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    async function loadEpisodes(seasonNum, currentEp = null, currentSeason = null) {
+      const list = document.getElementById('episode-list');
+      list.innerHTML = '<p style="color:var(--text-secondary);padding:10px;">Loading episodes...</p>';
+      
+      // Use provided season or get from select
+      const season = seasonNum || document.getElementById('season-select').value;
+      
+      try {
+        const res = await fetch(`${TMDB_PROXY}/tv/${currentMedia.id}/season/${season}`);
+        const data = await res.json();
+        
+        list.innerHTML = data.episodes.map(ep => {
+          const isCurrent = (currentEp && currentSeason && ep.episode_number == currentEp && ep.season_number == currentSeason) || 
+                           ep.episode_number == currentMedia.lastEpisode && ep.season_number == currentMedia.lastSeason;
+          return `
+            <div class="episode-item${isCurrent ? ' current' : ''}" onclick="playEpisode(${ep.season_number}, ${ep.episode_number})">
+              <div class="episode-num">${ep.episode_number}</div>
+              <div class="episode-details">
+                <h4>${ep.name}</h4>
+                <p>${ep.overview?.slice(0, 80) || 'No description'}...</p>
+              </div>
+            </div>
+          `;
+        }).join('');
+      } catch (err) {
+        list.innerHTML = '<p style="color:red;padding:10px;">Error loading episodes</p>';
+      }
+    }
+
+    function formatTime(seconds) {
+      const h = Math.floor(seconds / 3600);
+      const m = Math.floor((seconds % 3600) / 60);
+      const s = Math.floor(seconds % 60);
+      if (h > 0) return `${h}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function playEpisode(season, episode, resumeTime = 0) {
+      const wrapper = document.getElementById('embed-wrapper');
+      let url = `${getVideoSource('tv')}${currentMedia.id}/${season}/${episode}`;
+      
+      // Track current episode for position saving
+      currentMedia.lastSeason = season;
+      currentMedia.lastEpisode = episode;
+      
+      // Update debug display
+      const debug = document.getElementById('debug-episode');
+      if (debug) debug.textContent = `S${season} E${episode}`;
+      const debugUrl = document.getElementById('debug-url');
+      if (debugUrl) debugUrl.textContent = url;
+      
+      // Update episode list highlight
+      const list = document.getElementById('episode-list');
+      list.querySelectorAll('.episode-item').forEach(item => item.classList.remove('current'));
+      const currentItem = list.querySelector(`.episode-item[onclick="playEpisode(${season}, ${episode})"]`);
+      if (currentItem) currentItem.classList.add('current');
+      
+      // Add resume time to URL if available (some players support ?t=seconds)
+      if (resumeTime > 0) {
+        url += `?t=${Math.floor(resumeTime)}`;
+      }
+      
+      const embed = document.getElementById('video-embed');
+      if (embed) embed.remove();
+      
+      const newEmbed = document.createElement('iframe');
+      newEmbed.id = 'video-embed';
+      newEmbed.setAttribute('allowfullscreen', '');
+      newEmbed.src = url;
+      wrapper.appendChild(newEmbed);
+      
+      // Try to get video time periodically and save it
+      if (currentMediaType === 'tv') {
+        const savePosition = () => {
+          try {
+            const iframe = embed;
+            if (iframe && iframe.contentDocument) {
+              const videos = iframe.contentDocument.getElementsByTagName('video');
+              if (videos.length > 0) {
+                currentPlayPosition = videos[0].currentTime;
+              }
+            }
+          } catch (e) {
+            // CORS blocked - can't read iframe
+          }
+        };
+        
+        // Save position every 10 seconds while playing
+        const positionInterval = setInterval(savePosition, 10000);
+        
+        // Save on pause
+        embed.onpause = () => {
+          savePosition();
+        };
+        
+        // Save before leaving
+        embed.onbeforeunload = () => {
+          savePosition();
+          addToRecentlyWatched({ 
+            id: currentMedia.id, 
+            type: 'tv', 
+            title: currentMedia.name, 
+            poster: currentMedia.poster_path,
+            season: season,
+            episode: episode,
+            position: currentPlayPosition
+          });
+        };
+      }
+      
+      addToRecentlyWatched({ 
+        id: currentMedia.id, 
+        type: 'tv', 
+        title: currentMedia.name, 
+        poster: currentMedia.poster_path,
+        season: season,
+        episode: episode,
+        position: resumeTime
+      });
+    }
+
+    function addToRecentlyWatched(item) {
+      if (!account) return;
+      
+      // Remove existing entry for same media
+      recentlyWatched = recentlyWatched.filter(r => !(r.id === item.id && r.type === item.type));
+      
+      // Add to front
+      recentlyWatched.unshift(item);
+      
+      // Keep max 20 items
+      if (recentlyWatched.length > 20) recentlyWatched = recentlyWatched.slice(0, 20);
+      
+      renderRecentlyWatched();
+      
+      // Sync to backend
+      fetch(`${API_BASE}/api/user/${account.username}/recently-watched`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(item)
+      }).catch(err => console.log('Failed to sync recently watched'));
+    }
+
+    function renderRecentlyWatched() {
+      const container = document.getElementById('recently-watched');
+      container.innerHTML = '';
+      
+      if (!account) {
+        container.innerHTML = '<p style="padding:20px;color:var(--text-secondary);">Sign in to save your watch history</p>';
+        document.getElementById('recently-watched-section').style.display = settings.showRecentlyWatched ? 'block' : 'none';
+        return;
+      }
+      
+      if (recentlyWatched.length === 0) {
+        container.innerHTML = '<p style="padding:20px;color:var(--text-secondary);">No recently watched items</p>';
+        document.getElementById('recently-watched-section').style.display = settings.showRecentlyWatched ? 'block' : 'none';
+        return;
+      }
+      recentlyWatched.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        const positionText = item.position > 0 ? formatTime(item.position) + ' • ' : '';
+        card.innerHTML = `
+          <button class="card-remove" onclick="removeFromRecently(${index})">&times;</button>
+          <img src="${IMG_BASE}${item.poster}" alt="${item.title}" />
+          <div class="card-info">
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">${item.type === 'movie' ? 'Movie' : `${positionText}S${item.season}E${item.episode}`}</div>
+          </div>
+        `;
+        card.onclick = (e) => { if (!e.target.classList.contains('card-remove')) openMedia(item.id, item.type); };
+        container.appendChild(card);
+      });
+      document.getElementById('recently-watched-section').style.display = 
+        settings.showRecentlyWatched && recentlyWatched.length > 0 ? 'block' : 'none';
+    }
+
+    function removeFromRecently(index) {
+      recentlyWatched.splice(index, 1);
+      renderRecentlyWatched();
+      // Sync to backend
+      fetch(`${API_BASE}/api/user/${account.username}/recently-watched`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(recentlyWatched)
+      }).catch(err => console.log('Failed to sync recently watched'));
+    }
+
+    async function loadHomeContent() {
+      const sections = [
+        { id: 'recommended-section', fetch: () => fetch(`${TMDB_PROXY}/trending/all/week`) },
+        { id: 'movies-section', fetch: () => fetch(`${TMDB_PROXY}/movie/top_rated`) },
+        { id: 'shows-section', fetch: () => fetch(`${TMDB_PROXY}/tv/top_rated`) },
+        { id: 'comedy-section', fetch: () => fetch(`${TMDB_PROXY}/discover/movie?with_genres=35`) }
+      ];
+
+      for (const section of sections) {
+        const container = document.getElementById(section.id);
+        container.innerHTML = '<p style="padding:20px;color:var(--text-secondary)">Loading...</p>';
+        
+        try {
+          const res = await section.fetch();
+          const data = await res.json();
+          container.innerHTML = '';
+          data.results.slice(0, 15).forEach(item => {
+            if (!item.poster_path) return;
+            const type = item.title ? 'movie' : 'tv';
+            container.appendChild(createCard(item, type));
+          });
+          if (container.children.length === 0) container.innerHTML = '<p style="padding:20px;color:var(--text-secondary)">No content available</p>';
+        } catch (err) {
+          container.innerHTML = '<p style="color:red;padding:20px;">Error loading</p>';
+        }
+      }
+    }
+
+    // Remote/Keyboard Navigation - Category-based
+    let currentCategory = 0;
+    let currentCardIndex = 0;
+    let categories = [];
+    let inCardMode = false; // Track if we're navigating cards or headers
+
+    function buildCategories() {
+      categories = [];
+      const page = document.querySelector('.page.active');
+      if (!page) return;
+
+      const pageId = page.id;
+
+      // Add search bar (check both home and search pages)
+      const searchBar = page.querySelector('#search-bar-wrapper, #search-bar-wrapper-page, .search-bar');
+      if (searchBar) {
+        categories.push({ element: searchBar, type: 'search', cards: [] });
+      }
+
+      // Add user avatar
+      const userAvatar = page.querySelector('.user-avatar');
+      if (userAvatar) {
+        categories.push({ element: userAvatar, type: 'header' });
+      }
+
+      // Find settings button
+      const settingsBtn = page.querySelector('.icon-btn[title="Settings"]') || page.querySelector('#settings-btn');
+      if (settingsBtn) {
+        categories.push({ element: settingsBtn, type: 'header' });
+      }
+
+      // Add slider/sections based on page
+      if (pageId === 'search-page') {
+        const section = page.querySelector('#search-results-section');
+        if (section) {
+          const container = section.querySelector('.search-results-grid');
+          const cards = container ? Array.from(container.querySelectorAll('.card')) : [];
+          categories.push({ element: section, type: 'slider', container: container, cards: cards });
+        }
+      } else {
+        const sectionIds = ['recently-watched-section', 'recommended-section', 'movies-section', 'shows-section', 'comedy-section'];
+        sectionIds.forEach(id => {
+          const section = page.querySelector(`#${id}`);
+          if (section && section.style.display !== 'none') {
+            // Section itself may be the container, or it may have a child container
+            const container = section.querySelector('.slider-container, .search-results-grid') || section;
+            const cards = Array.from(container.querySelectorAll('.card'));
+            if (cards.length > 0) {
+              categories.push({ element: section, type: 'slider', container: container, cards: cards });
+            }
+          }
+        });
+      }
+    }
+
+    // Find the first slider category index
+    function findFirstSliderIndex() {
+      for (let i = 0; i < categories.length; i++) {
+        if (categories[i].type === 'slider' && categories[i].cards.length > 0) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    // Find the next slider category index (searching from a starting point)
+    function findNextSliderIndex(startIndex) {
+      for (let i = startIndex; i < categories.length; i++) {
+        if (categories[i].type === 'slider' && categories[i].cards.length > 0) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    // Find the previous slider category index (searching backwards from a starting point)
+    function findPrevSliderIndex(startIndex) {
+      for (let i = startIndex - 1; i >= 0; i--) {
+        if (categories[i].type === 'slider' && categories[i].cards.length > 0) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    function handleRemoteKey(e) {
+      const key = e.key;
+      
+      if (!['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Enter', 'Backspace', 'Escape'].includes(e.key)) return;
+      
+      // Allow backspace to work normally when typing in an input
+      const activeElement = document.activeElement;
+      const isTypingInInput = activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA');
+      
+      if (isTypingInInput && key === 'Backspace') return;
+      
+      // Allow Enter to trigger search when in an input
+      if (isTypingInInput && key === 'Enter') {
+        const input = activeElement;
+        if (input.id === 'search-input') {
+          doSearch();
+        } else if (input.id === 'search-input-page') {
+          doSearchFromPage();
+        }
+        return;
+      }
+      
+      // Don't handle backspace/escape on account or settings pages (allow typing)
+      const pageId = document.querySelector('.page.active')?.id;
+      if ((pageId === 'account-page' || pageId === 'settings-page') && (key === 'Backspace' || key === 'Escape')) {
+        // Only go back on Escape from settings, but allow Backspace for typing
+        if (key === 'Escape') {
+          showPage('home-page');
+          currentCategory = 0;
+          currentCardIndex = 0;
+          inCardMode = false;
+        }
+        return;
+      }
+      
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Handle Enter/OK to click
+      if (key === 'Enter' || key === ' ') {
+        const cat = categories[currentCategory];
+        if (!cat) return;
+
+        if (cat.type === 'header') {
+          cat.element.click();
+        } else if (cat.type === 'search') {
+          const input = cat.element.querySelector('input');
+          if (input) input.focus();
+        } else if (cat.type === 'slider' && cat.cards.length > 0) {
+          const card = cat.cards[currentCardIndex];
+          if (card) card.click();
+        }
+        return;
+      }
+
+      if (key === 'Escape' || key === 'Backspace') {
+        if (pageId === 'home-page') return;
+        showPage('home-page');
+        currentCategory = 0;
+        currentCardIndex = 0;
+        inCardMode = false;
+        return;
+      }
+
+      // Rebuild categories if needed
+      buildCategories();
+      
+      if (categories.length === 0) return;
+
+      // Ensure category index is valid
+      if (currentCategory >= categories.length) currentCategory = categories.length - 1;
+
+      const cat = categories[currentCategory];
+
+      switch(key) {
+        case 'ArrowUp':
+          // Up from any category goes to previous header (search, profile, settings)
+          if (currentCategory > 0) {
+            currentCategory--;
+            currentCardIndex = 0;
+            inCardMode = false;
+          }
+          updateCategoryFocus();
+          scrollToFocused();
+          break;
+
+        case 'ArrowDown':
+          const currentCat = categories[currentCategory];
+          if (currentCat.type === 'slider') {
+            // Down from slider goes to next slider category
+            const nextSlider = findNextSliderIndex(currentCategory + 1);
+            if (nextSlider !== -1) {
+              currentCategory = nextSlider;
+              currentCardIndex = 0;
+            }
+          } else {
+            // Down from header/search: go to first card of first slider
+            const firstSlider = findFirstSliderIndex();
+            if (firstSlider !== -1) {
+              currentCategory = firstSlider;
+              currentCardIndex = 0;
+              inCardMode = true;
+            }
+          }
+          updateCategoryFocus();
+          scrollToFocused();
+          break;
+
+        case 'ArrowLeft':
+          if (cat.type === 'slider' && cat.cards.length > 0) {
+            // Navigate cards horizontally
+            if (currentCardIndex > 0) {
+              currentCardIndex--;
+            }
+          } else {
+            // Navigate between header categories
+            if (currentCategory > 0) {
+              currentCategory--;
+              currentCardIndex = 0;
+              inCardMode = false;
+            }
+          }
+          updateCategoryFocus();
+          scrollToFocused();
+          break;
+
+        case 'ArrowRight':
+          if (cat.type === 'slider' && cat.cards.length > 0) {
+            // Navigate cards horizontally
+            if (currentCardIndex < cat.cards.length - 1) {
+              currentCardIndex++;
+            }
+          } else {
+            // Navigate between header categories (search → profile → settings → first card)
+            if (currentCategory < categories.length - 1) {
+              currentCategory++;
+              currentCardIndex = 0;
+              // If moving to a slider, enter card mode
+              const nextCat = categories[currentCategory];
+              if (nextCat.type === 'slider' && nextCat.cards.length > 0) {
+                inCardMode = true;
+              } else {
+                inCardMode = false;
+              }
+            }
+          }
+          updateCategoryFocus();
+          scrollToFocused();
+          break;
+      }
+    }
+
+    function updateCategoryFocus() {
+      // Remove all focus styles
+      document.querySelectorAll('.category-focused').forEach(el => el.classList.remove('category-focused'));
+      document.querySelectorAll('.card.focused').forEach(c => c.classList.remove('focused'));
+      document.querySelectorAll('.header-focus').forEach(el => el.classList.remove('header-focus'));
+
+      const cat = categories[currentCategory];
+      if (!cat) return;
+
+      if (cat.type === 'slider' && cat.cards.length > 0) {
+        cat.element.classList.add('category-focused');
+        const card = cat.cards[currentCardIndex];
+        if (card) card.classList.add('focused');
+      } else if (cat.type === 'header') {
+        cat.element.classList.add('header-focus');
+      } else if (cat.type === 'search') {
+        cat.element.classList.add('category-focused');
+      }
+    }
+
+    function updateCardFocus() {
+      document.querySelectorAll('.card.focused').forEach(c => c.classList.remove('focused'));
+      const cat = categories[currentCategory];
+      if (cat && cat.type === 'slider' && cat.cards.length > 0) {
+        const card = cat.cards[currentCardIndex];
+        if (card) card.classList.add('focused');
+      }
+    }
+
+    function scrollToFocused() {
+      const cat = categories[currentCategory];
+      if (!cat) return;
+
+      if (cat.type === 'slider') {
+        const card = cat.cards[currentCardIndex];
+        if (card) {
+          card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+      } else if (cat.element) {
+        cat.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    }
+
+    // Rebuild categories when page changes
+    const originalShowPage = showPage;
+    showPage = function(pageId) {
+      originalShowPage(pageId);
+      currentCategory = 0;
+      currentCardIndex = 0;
+      inCardMode = false;
+      setTimeout(() => {
+        buildCategories();
+        updateCategoryFocus();
+      }, 300);
+    };
+
+    // Rebuild grid after search
+    const originalPerformSearch = performSearch;
+    performSearch = async function() {
+      await originalPerformSearch();
+      setTimeout(() => {
+        buildCategories();
+        currentCategory = 0;
+        currentCardIndex = 0;
+        inCardMode = false;
+        updateCategoryFocus();
+      }, 500);
+    };
+
+    // Handle keyboard navigation
+    document.addEventListener('keydown', handleRemoteKey);
+
+    // Initialize navigation on page load
+    function initNavigation() {
+      buildCategories();
+      currentCategory = 0;
+      currentCardIndex = 0;
+      inCardMode = false;
+      updateCategoryFocus();
+    }
+
+    loadSettings().then(() => {
+      updateAccountUI();
+      updateToggleUI();
+      initAvatarSelector();
+      renderRecentlyWatched();
+      populateSourceSelector();
+      
+      // Load content then initialize navigation after cards are populated
+      loadHomeContent().then(() => {
+        initNavigation();
+      });
+    });
+  </script>
+</body>
+</html>
