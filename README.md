@@ -76,3 +76,15 @@ Themes:
 
 Dark
 <img width="691" height="1135" alt="image" src="https://github.com/user-attachments/assets/00928706-7356-4c44-aa94-3a93007ba678" />
+
+Light
+<img width="697" height="1121" alt="image" src="https://github.com/user-attachments/assets/db1d2d8e-7088-4fa6-b273-9d8ee24b60c9" />
+
+Synthwave
+<img width="692" height="1121" alt="image" src="https://github.com/user-attachments/assets/f95e7799-d664-49c6-acda-849371b5ea97" />
+
+Forest
+<img width="698" height="1128" alt="image" src="https://github.com/user-attachments/assets/616de4fb-d349-4b11-9e6d-ddee92baf3de" />
+
+Pink Flowers (animated: has flowers falling in background)
+<img width="705" height="1142" alt="image" src="https://github.com/user-attachments/assets/30260348-70e0-4ece-80a7-b299a1c838b1" />
