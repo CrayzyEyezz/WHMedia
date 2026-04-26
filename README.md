@@ -67,3 +67,12 @@ Then access from other devices at `http://192.168.x.x:3001`
 - **Page shows "Error loading":** Restart the server
 - **Can't connect from other device:** Make sure your firewall allows port 3001
 - **Video not loading:** Try a different video source in Settings
+
+
+
+
+
+Themes:
+
+Dark
+<img width="691" height="1135" alt="image" src="https://github.com/user-attachments/assets/00928706-7356-4c44-aa94-3a93007ba678" />
