@@ -2,6 +2,10 @@
 
 A self-hosted media streaming dashboard for movies and TV shows.
 
+## Requirements
+
+- [Node.js](https://nodejs.org) (v18 or higher)
+
 ## Setup
 
 1. Install dependencies:
@@ -10,10 +14,9 @@ A self-hosted media streaming dashboard for movies and TV shows.
    ```
 
 2. Start the server:
-   ```bash
-   node server.js
-   ```
-   Or use the provided script: `./Start WHMedia.sh`
+   - Linux/Mac: `./Start WHMedia.sh`
+   - Windows: Double-click `Start WHMedia.bat`
+   - Or manually: `node server.js`
 
 3. Open in browser: `http://localhost:3001`
    - From other devices on your network: `http://YOUR_DEVICE_IP:3001`
