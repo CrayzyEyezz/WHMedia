@@ -2305,17 +2305,26 @@
       setTimeout(() => {
         buildCategories();
         
-        // Find first category with saved position
+        // Log all category IDs
+        console.log('Built categories:', categories.map(c => ({
+          id: c.element?.id,
+          cards: c.cards?.length
+        })));
+        
+        // Find category with saved position
         let found = false;
         for (let i = 0; i < categories.length; i++) {
           const c = categories[i];
-          if (c.element && c.element.id && navPositions[c.element.id] !== undefined) {
-            currentCategory = i;
-            currentCardIndex = navPositions[c.element.id];
-            if (currentCardIndex >= c.cards.length) currentCardIndex = c.cards.length - 1;
-            if (currentCardIndex < 0) currentCardIndex = 0;
-            found = true;
-            break;
+          if (c.element && c.element.id) {
+            const savedPos = navPositions[c.element.id];
+            if (savedPos !== undefined) {
+              currentCategory = i;
+              currentCardIndex = savedPos;
+              if (currentCardIndex >= c.cards.length) currentCardIndex = c.cards.length - 1;
+              if (currentCardIndex < 0) currentCardIndex = 0;
+              found = true;
+              break;
+            }
           }
         }
         if (!found) {
