@@ -4,7 +4,7 @@ A self-hosted media streaming dashboard for movies and TV shows.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org) (v18 or higher)
+- [Node.js](https://nodejs.org) (v18 or higher) - includes npm
 
 ## Setup
 
