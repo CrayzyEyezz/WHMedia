@@ -2289,38 +2289,42 @@
       }
     }
 
-    // Store navigation positions per section
+    // Store navigation positions per section ID
     const navPositions = {};
     
     // Rebuild categories when page changes
     const originalShowPage = showPage;
     showPage = function(pageId) {
       // Save current position before switching
-      if (categories[currentCategory] && categories[currentCategory].element) {
-        const sectionId = categories[currentCategory].element.id;
-        navPositions[sectionId] = currentCardIndex;
+      const cat = categories[currentCategory];
+      if (cat && cat.element && cat.element.id) {
+        navPositions[cat.element.id] = currentCardIndex;
       }
       
       originalShowPage(pageId);
-      currentCategory = 0;
-      inCardMode = false;
       setTimeout(() => {
         buildCategories();
-        // Restore position if we've been here before
-        const sectionIds = ['recently-watched', 'recommended-section', 'movies-section', 'shows-section', 'comedy-section'];
+        
+        // Find first category with saved position
+        let found = false;
         for (let i = 0; i < categories.length; i++) {
-          const cat = categories[i];
-          if (cat.element && navPositions[cat.element.id] !== undefined) {
+          const c = categories[i];
+          if (c.element && c.element.id && navPositions[c.element.id] !== undefined) {
             currentCategory = i;
-            currentCardIndex = navPositions[cat.element.id];
-            // Clamp to valid range
-            if (currentCardIndex >= cat.cards.length) currentCardIndex = cat.cards.length - 1;
+            currentCardIndex = navPositions[c.element.id];
+            if (currentCardIndex >= c.cards.length) currentCardIndex = c.cards.length - 1;
             if (currentCardIndex < 0) currentCardIndex = 0;
+            found = true;
             break;
           }
         }
+        if (!found) {
+          currentCategory = 0;
+          currentCardIndex = 0;
+        }
+        inCardMode = false;
         updateCategoryFocus();
-      }, 300);
+      }, 100);
     };
 
     // Rebuild grid after search
