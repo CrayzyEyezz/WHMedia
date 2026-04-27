@@ -320,7 +320,14 @@ app.delete('/api/user/:username', (req, res) => {
 });
 
 // Serve the app (bind to all interfaces for cross-device access)
-app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`WHMedia running on http://0.0.0.0:${PORT}`);
   console.log(`Access from this device: http://localhost:${PORT}`);
+});
+
+process.on('SIGINT', () => {
+  console.log('\nShutting down...');
+  server.close(() => {
+    process.exit(0);
+  });
 });
