@@ -1474,7 +1474,6 @@
         recentSection.style.display = settings.showRecentlyWatched && recentlyWatched.length > 0 ? 'block' : 'none';
       }
       
-      // Toggle each section by ID
       const sectionIds = {
         'recommended-section': 'showRecommended',
         'movies-section': 'showMovies',
@@ -1482,9 +1481,17 @@
         'comedy-section': 'showComedy'
       };
       
+      const titleTexts = ['Top Recommended', 'Top Movies', 'Top TV Shows', 'Comedy'];
+      
       for (const [id, settingKey] of Object.entries(sectionIds)) {
-        const el = document.getElementById(id);
-        if (el) el.style.display = settings[settingKey] ? '' : 'none';
+        const content = document.getElementById(id);
+        if (content) content.style.display = settings[settingKey] ? '' : 'none';
+        
+        // Find and hide/show the title (previous sibling h2)
+        const title = content.previousElementSibling;
+        if (title && title.tagName === 'H2') {
+          title.style.display = settings[settingKey] ? '' : 'none';
+        }
       }
     }
 
