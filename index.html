@@ -1469,16 +1469,23 @@
     }
 
     function updateHomeVisibility() {
-      document.getElementById('recently-watched-section').style.display = 
-        settings.showRecentlyWatched && recentlyWatched.length > 0 ? 'block' : 'none';
-      document.getElementById('home-sections').querySelectorAll('h2').forEach((h, i) => {
-        const sections = ['recommended-section', 'movies-section', 'shows-section', 'comedy-section'];
-        const keys = ['showRecommended', 'showMovies', 'showShows', 'showComedy'];
-        if (i < sections.length) {
-          const container = h.closest('div').querySelector('.slider-container');
-          if (container) container.style.display = settings[keys[i]] ? '' : 'none';
-        }
-      });
+      const recentSection = document.getElementById('recently-watched-section');
+      if (recentSection) {
+        recentSection.style.display = settings.showRecentlyWatched && recentlyWatched.length > 0 ? 'block' : 'none';
+      }
+      
+      // Toggle each section by ID
+      const sectionIds = {
+        'recommended-section': 'showRecommended',
+        'movies-section': 'showMovies',
+        'shows-section': 'showShows',
+        'comedy-section': 'showComedy'
+      };
+      
+      for (const [id, settingKey] of Object.entries(sectionIds)) {
+        const el = document.getElementById(id);
+        if (el) el.style.display = settings[settingKey] ? '' : 'none';
+      }
     }
 
     function updateToggleUI() {
