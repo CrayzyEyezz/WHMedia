@@ -2202,18 +2202,95 @@
           scrollToFocused();
           break;
 
-        case 'ArrowLeft':
+case 'ArrowLeft':
           if (cat.type === 'slider' && cat.cards.length > 0) {
             // Navigate cards horizontally
             if (currentCardIndex > 0) {
               currentCardIndex--;
+            } else {
+              // Save position when leaving this category
+              if (cat.element && cat.element.id) {
+                navPositions[cat.element.id] = currentCardIndex;
+              }
+              // Go to previous category
+              if (currentCategory > 0) {
+                currentCategory--;
+                // Restore saved position for target category
+                const prevCat = categories[currentCategory];
+                if (prevCat.element && prevCat.element.id && navPositions[prevCat.element.id] !== undefined) {
+                  currentCardIndex = navPositions[prevCat.element.id];
+                  if (currentCardIndex >= prevCat.cards.length) currentCardIndex = 0;
+                } else {
+                  currentCardIndex = 0;
+                }
+                inCardMode = true;
+              }
             }
           } else {
             // Navigate between header categories
             if (currentCategory > 0) {
+              // Save position when leaving this category
+              if (cat.element && cat.element.id) {
+                navPositions[cat.element.id] = currentCardIndex;
+              }
               currentCategory--;
-              currentCardIndex = 0;
-              inCardMode = false;
+              const nextCat = categories[currentCategory];
+              if (nextCat.element && nextCat.element.id && navPositions[nextCat.element.id] !== undefined) {
+                currentCardIndex = navPositions[nextCat.element.id];
+                if (currentCardIndex >= nextCat.cards.length) currentCardIndex = 0;
+              } else {
+                currentCardIndex = 0;
+              }
+              if (nextCat.type === 'slider' && nextCat.cards.length > 0) {
+                inCardMode = true;
+              }
+            }
+          }
+          updateCategoryFocus();
+          scrollToFocused();
+          break;
+
+        case 'ArrowRight':
+          if (cat.type === 'slider' && cat.cards.length > 0) {
+            // Navigate cards horizontally
+            if (currentCardIndex < cat.cards.length - 1) {
+              currentCardIndex++;
+            } else {
+              // Save position when leaving this category
+              if (cat.element && cat.element.id) {
+                navPositions[cat.element.id] = currentCardIndex;
+              }
+              // Go to next category
+              if (currentCategory < categories.length - 1) {
+                currentCategory++;
+                const nextCat = categories[currentCategory];
+                if (nextCat.element && nextCat.element.id && navPositions[nextCat.element.id] !== undefined) {
+                  currentCardIndex = navPositions[nextCat.element.id];
+                  if (currentCardIndex >= nextCat.cards.length) currentCardIndex = 0;
+                } else {
+                  currentCardIndex = 0;
+                }
+                inCardMode = true;
+              }
+            }
+          } else {
+            // Navigate between header categories
+            // Save position when leaving this category
+            if (cat.element && cat.element.id) {
+              navPositions[cat.element.id] = currentCardIndex;
+            }
+            if (currentCategory < categories.length - 1) {
+              currentCategory++;
+              const nextCat = categories[currentCategory];
+              if (nextCat.element && nextCat.element.id && navPositions[nextCat.element.id] !== undefined) {
+                currentCardIndex = navPositions[nextCat.element.id];
+                if (currentCardIndex >= nextCat.cards.length) currentCardIndex = 0;
+              } else {
+                currentCardIndex = 0;
+              }
+              if (nextCat.type === 'slider' && nextCat.cards.length > 0) {
+                inCardMode = true;
+              }
             }
           }
           updateCategoryFocus();
