@@ -1,6 +1,6 @@
 {
   "name": "whmedia-server",
-  "version": "1.0.0",
+  "version": "1.7.6",
   "description": "Backend server for WHMedia",
   "main": "server.js",
   "scripts": {
