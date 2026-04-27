@@ -1107,6 +1107,7 @@
             updateToggleUI();
             updateAccountUI();
             renderRecentlyWatched();
+            updateHomeVisibility();
             return;
           } else {
             localStorage.removeItem('whmedia_device');
@@ -1116,6 +1117,8 @@
           console.log('Backend offline');
         }
       }
+      // Apply visibility for logged-out state
+      updateHomeVisibility();
     }
 
     function saveSettings() {
